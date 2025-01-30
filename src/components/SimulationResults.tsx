@@ -61,7 +61,7 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
         
         <div className="h-[400px] mb-6">
           <ResponsiveContainer width="100%" height="100%">
-            <ComposedChart data={chartData}>
+            <ComposedChart data={chartData} barGap={0}>
               <CartesianGrid strokeDasharray="3 3" stroke="#333" />
               <XAxis dataKey="period" stroke="#666" />
               <YAxis stroke="#666" />
@@ -73,7 +73,7 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
                 formatter={(value: number) => Math.abs(value).toFixed(5)}
               />
               <Bar dataKey="creatorRewards" fill="#00E5E5" name="Creator Rewards" />
-              <Bar dataKey="spentOnArtifacts" fill="#FF4444" name="Spent on Artifacts" />
+              <Bar dataKey="spentOnArtifacts" fill="#FF4444" name="Spent on Artifacts" stackId="stack" />
               <Line
                 type="monotone"
                 dataKey="budgetLeft"

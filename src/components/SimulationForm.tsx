@@ -35,6 +35,13 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
       toast({ title: "Error", description: "Creator rewards must be between 1% and 50%" });
       return;
     }
+    if (params.avgPricePerArtifact < 0.00001 || params.avgPricePerArtifact > params.budgetPerPeriod) {
+      toast({ 
+        title: "Error", 
+        description: `Average price per artifact must be between 0.00001 ETH and ${params.budgetPerPeriod} ETH (Budget per Period)` 
+      });
+      return;
+    }
 
     onSubmit(params);
   };
@@ -112,7 +119,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             name="avgPricePerArtifact"
             id="avgPricePerArtifact"
             min="0.00001"
-            step="0.1"
+            step="0.00001"
             defaultValue="0.1"
             className="input-field w-full"
           />
