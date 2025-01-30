@@ -61,7 +61,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             id="budget"
             min="0.1"
             step="0.1"
-            defaultValue="1"
+            defaultValue="1.0"
             className="input-field w-full"
           />
         </div>
@@ -91,7 +91,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             id="creatorRewards"
             min="1"
             max="50"
-            defaultValue="10"
+            defaultValue="30"
             className="input-field w-full"
           />
         </div>
@@ -105,7 +105,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             name="avgListingsPerPeriod"
             id="avgListingsPerPeriod"
             min="1"
-            defaultValue="5"
+            defaultValue="10"
             className="input-field w-full"
           />
         </div>
@@ -135,7 +135,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             id="avgPercentageSold"
             min="0"
             max="100"
-            defaultValue="50"
+            defaultValue="10"
             className="input-field w-full"
           />
         </div>
