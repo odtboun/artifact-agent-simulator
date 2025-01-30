@@ -16,7 +16,7 @@ export default function Index() {
     <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-2">AI Agent Economy Simulator</h1>
+          <h1 className="text-4xl font-bold mb-2">Swan Agent Economics Simulator</h1>
           <p className="text-foreground/60">
             Simulate your AI agent's economic behavior and analyze the results
           </p>
