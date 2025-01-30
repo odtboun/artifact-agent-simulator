@@ -27,8 +27,11 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
       toast({ title: "Error", description: "Budget must be at least 0.1 ETH" });
       return;
     }
-    if (params.budgetPerPeriod < 0.05) {
-      toast({ title: "Error", description: "Budget per period must be at least 0.05 ETH" });
+    if (params.budgetPerPeriod < 0.05 || params.budgetPerPeriod > params.budget) {
+      toast({ 
+        title: "Error", 
+        description: `Budget per period must be between 0.05 ETH and ${params.budget} ETH (Initial Budget)` 
+      });
       return;
     }
     if (params.creatorRewards < 1 || params.creatorRewards > 50) {
@@ -60,7 +63,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             name="budget"
             id="budget"
             min="0.1"
-            step="0.1"
+            step="any"
             defaultValue="1.0"
             className="input-field w-full"
           />
@@ -75,7 +78,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             name="budgetPerPeriod"
             id="budgetPerPeriod"
             min="0.05"
-            step="0.05"
+            step="any"
             defaultValue="0.5"
             className="input-field w-full"
           />
@@ -119,7 +122,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
             name="avgPricePerArtifact"
             id="avgPricePerArtifact"
             min="0.00001"
-            step="0.00001"
+            step="any"
             defaultValue="0.1"
             className="input-field w-full"
           />
