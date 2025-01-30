@@ -1,14 +1,31 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import SimulationForm from "../components/SimulationForm";
+import SimulationResults from "../components/SimulationResults";
+import { PeriodSummary, SimulationParams } from "../types/simulation";
+import { runSimulation } from "../utils/simulation";
 
-const Index = () => {
+export default function Index() {
+  const [results, setResults] = useState<PeriodSummary[] | null>(null);
+
+  const handleSimulation = (params: SimulationParams) => {
+    const simulationResults = runSimulation(params);
+    setResults(simulationResults);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold mb-2">AI Agent Economy Simulator</h1>
+          <p className="text-foreground/60">
+            Simulate your AI agent's economic behavior and analyze the results
+          </p>
+        </div>
+
+        <SimulationForm onSubmit={handleSimulation} />
+        
+        {results && <SimulationResults results={results} />}
       </div>
     </div>
   );
-};
-
-export default Index;
+}
