@@ -2,8 +2,6 @@ import { useState } from "react";
 import { PeriodSummary, Artifact } from "../types/simulation";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Line, ComposedChart, ResponsiveContainer } from "recharts";
 import { ChartBarIcon, CoinsIcon, DatabaseIcon } from "lucide-react";
-import { Alert, AlertDescription } from "./ui/alert";
-import { InfoIcon } from "lucide-react";
 
 interface SimulationResultsProps {
   results: PeriodSummary[];
@@ -56,35 +54,17 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
     budgetLeft: Number(period.budgetLeft.toFixed(5)),
   }));
 
-  const simulationStoppedEarly = results.length < results[0].budgetLeft && results[results.length - 1].budgetLeft < 0.00001;
-
-  // Calculate the domain for Y axis
-  const maxValue = Math.max(...chartData.map(d => Math.max(d.creatorRewards, d.budgetLeft)));
-  const minValue = Math.min(...chartData.map(d => d.spentOnArtifacts));
-
   return (
     <div className="space-y-6">
       <div className="glass-card p-6">
         <h3 className="text-lg font-semibold mb-4">Simulation Results</h3>
         
-        {simulationStoppedEarly && (
-          <Alert className="mb-4">
-            <InfoIcon className="h-4 w-4" />
-            <AlertDescription>
-              The simulation stopped because the remaining budget fell below the minimum threshold (0.00001 ETH).
-            </AlertDescription>
-          </Alert>
-        )}
-
         <div className="h-[400px] mb-6">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={chartData} barGap={0}>
               <CartesianGrid strokeDasharray="3 3" stroke="#333" />
               <XAxis dataKey="period" stroke="#666" />
-              <YAxis 
-                stroke="#666" 
-                domain={[minValue * 1.1, maxValue * 1.1]} 
-              />
+              <YAxis stroke="#666" />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "#1A1A1A",
@@ -93,7 +73,7 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
                 formatter={(value: number) => Math.abs(value).toFixed(5)}
               />
               <Bar dataKey="creatorRewards" fill="#00E5E5" name="Creator Rewards" />
-              <Bar dataKey="spentOnArtifacts" fill="#FF4444" name="Spent on Artifacts" />
+              <Bar dataKey="spentOnArtifacts" fill="#FF4444" name="Spent on Artifacts" stackId="stack" />
               <Line
                 type="monotone"
                 dataKey="budgetLeft"
