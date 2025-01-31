@@ -21,7 +21,7 @@
 }
 
 .glass-card {
-  @apply bg-card backdrop-blur-sm border border-border/50 rounded-lg;
+  @apply bg-card border border-border/50 rounded-lg;
 }
 
 .input-field {
@@ -30,10 +30,4 @@
 
 .chart-tooltip {
   @apply glass-card p-2 text-sm;
-}
-
-.info-box {
-  background-color: black;
-  color: white;
-  opacity: 1;
 }
