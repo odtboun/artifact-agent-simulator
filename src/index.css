@@ -21,7 +21,7 @@
 }
 
 .glass-card {
-  @apply bg-card backdrop-blur-sm border border-border/50 rounded-lg;
+  @apply bg-card border border-border/50 rounded-lg;
 }
 
 .input-field {
