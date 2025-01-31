@@ -52,11 +52,15 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
   const chartData = results.map((period) => ({
     period: period.period,
     creatorRewards: Number(period.creatorRewards.toFixed(5)),
-    spentOnArtifacts: Number(period.spentOnArtifacts.toFixed(5)),
+    spentOnArtifacts: -Number(period.spentOnArtifacts.toFixed(5)), // Negative for visual purposes
     budgetLeft: Number(period.budgetLeft.toFixed(5)),
   }));
 
   const simulationStoppedEarly = results.length < results[0].budgetLeft && results[results.length - 1].budgetLeft < 0.00001;
+
+  // Calculate the domain for Y axis
+  const maxValue = Math.max(...chartData.map(d => Math.max(d.creatorRewards, d.budgetLeft)));
+  const minValue = Math.min(...chartData.map(d => d.spentOnArtifacts));
 
   return (
     <div className="space-y-6">
@@ -77,7 +81,10 @@ export default function SimulationResults({ results }: SimulationResultsProps) {
             <ComposedChart data={chartData} barGap={0}>
               <CartesianGrid strokeDasharray="3 3" stroke="#333" />
               <XAxis dataKey="period" stroke="#666" />
-              <YAxis stroke="#666" domain={[0, 'auto']} />
+              <YAxis 
+                stroke="#666" 
+                domain={[minValue * 1.1, maxValue * 1.1]} 
+              />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "#1A1A1A",
