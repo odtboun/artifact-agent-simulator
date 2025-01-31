@@ -232,7 +232,7 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
 
       <button
         type="submit"
-        className="w-full mt-6 bg-primary text-primary-foreground font-medium py-2 rounded-md hover:bg-primary/90 transition-colors"
+        className="w-full mt-6 bg-orange-500 text-white font-medium py-2 rounded-md hover:bg-orange-600 transition-colors"
       >
         Run Simulation
       </button>
