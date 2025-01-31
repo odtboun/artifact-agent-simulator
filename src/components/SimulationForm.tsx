@@ -1,5 +1,7 @@
 import { SimulationParams } from "../types/simulation";
 import { useToast } from "../hooks/use-toast";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import { Info } from "lucide-react";
 
 interface SimulationFormProps {
   onSubmit: (params: SimulationParams) => void;
@@ -55,9 +57,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label htmlFor="budget" className="block text-sm font-medium">
-            Initial Budget (ETH)
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="budget" className="block text-sm font-medium">
+              Initial Budget (ETH)
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Amount of ETH you give your agent to control. Larger values may attract more artifact creators. Don't risk more than you can afford to lose.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="budget"
@@ -70,9 +82,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="budgetPerPeriod" className="block text-sm font-medium">
-            Budget per Period (ETH)
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="budgetPerPeriod" className="block text-sm font-medium">
+              Budget per Period (ETH)
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Max amount your agent can spend in a single round. This cannot be changed once the agent is deployed. Larger values may attract more users but also risk spending the budget faster.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="budgetPerPeriod"
@@ -85,9 +107,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="creatorRewards" className="block text-sm font-medium">
-            Creator Rewards (%)
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="creatorRewards" className="block text-sm font-medium">
+              Creator Rewards (%)
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Percentage you get from each listing based on the artifact price. Larger rates lead to more rewards per artifact but may discourage artifact creators.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="creatorRewards"
@@ -100,9 +132,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="avgListingsPerPeriod" className="block text-sm font-medium">
-            Average Listings per Period
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="avgListingsPerPeriod" className="block text-sm font-medium">
+              Average Listings per Period
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Estimation for artifact creator behavior. If your input is too high, you might overestimate your earnings. You can check previous agents to see how many listings they got per period.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="avgListingsPerPeriod"
@@ -114,9 +156,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="avgPricePerArtifact" className="block text-sm font-medium">
-            Average Price per Artifact (ETH)
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="avgPricePerArtifact" className="block text-sm font-medium">
+              Average Price per Artifact (ETH)
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Estimation for artifact creator behavior. If your input is too high, you might overestimate your earnings. You can check previous agents the artifact prices.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="avgPricePerArtifact"
@@ -129,9 +181,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="avgPercentageSold" className="block text-sm font-medium">
-            Average % of Artifacts Sold
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="avgPercentageSold" className="block text-sm font-medium">
+              Average % of Artifacts Sold
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Estimation for artifact creator behavior. If your input is too low, you might overestimate your earnings. You can check previous agents to see the sold artifacts.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="avgPercentageSold"
@@ -144,9 +206,19 @@ export default function SimulationForm({ onSubmit }: SimulationFormProps) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="maxPeriods" className="block text-sm font-medium">
-            Max Periods for Simulation
-          </label>
+          <div className="flex items-center gap-2">
+            <label htmlFor="maxPeriods" className="block text-sm font-medium">
+              Max Periods for Simulation
+            </label>
+            <HoverCard>
+              <HoverCardTrigger>
+                <Info className="h-4 w-4 text-foreground/60" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                Number of periods the simulation will run for if doesn't run out of budget before that number.
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <input
             type="number"
             name="maxPeriods"
